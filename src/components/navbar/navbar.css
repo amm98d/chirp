@@ -1,0 +1,15 @@
+.chirp-logo-text {
+    font-size: 1.15em;
+}
+
+.chirp-logo-img {
+    height: 35px;
+}
+
+.l-item {
+    display: inline-block;
+}
+
+.form-control {
+    color: red;
+}
