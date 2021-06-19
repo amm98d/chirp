@@ -1,18 +1,6 @@
-<<<<<<< HEAD
-//const PayableTrans = require('../expressjsblock/PayableTrans');
-//const GetterFunctions = require('../expressjsblock/GetterFuncs');
-//const express = require('express');
-//const expapp = express();
-//expapp.use( express.json() );       
-//expapp.use(express.urlencoded({ extended: true})); 
-//const path = require('path');
-//const port = process.env.PORT || 8000;
-//const {MongoClient} = require('mongodb');
-
 require('dotenv').config()
-const express=require('express');
-const expapp=express();
-=======
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -27,20 +15,20 @@ const port = process.env.PORT || 8000;
 
 dotenv.config();
 
->>>>>>> ba0e98fb5d3361e1bcbce4e0ab474121c0a6b1c9
+
 
 //connecting mongodb
-const mongoose=require('mongoose');
+//console.writeline(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL,{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
 .then(()=>console.log("connected to db"))
 .catch((err)=>console.log(err))
 
 expapp.use(express.json())
 
-const userRouter=require('./routes/userRouter')
-
+const userRouter=require('../routes/userRouter')
+const authRouter=require('../routes/authRouter')
 expapp.use('/userRouter',userRouter)
-
+expapp.use('/authRouter',authRouter)
 
 expapp.listen(3000,()=>console.log('Server has started..'))
 
@@ -52,7 +40,6 @@ expapp.get("/",(req,res) =>{
 
 
 
-<<<<<<< HEAD
 //Server Making Transactions
 expapp.post("/AddUser", async(req,res) =>{
      console.log(" Request Recieved for adding User: ");
@@ -74,8 +61,6 @@ app.listen(3000,()=>console.log('Server has started..'))
      res.send(trans);
  
  });
-=======
->>>>>>> ba0e98fb5d3361e1bcbce4e0ab474121c0a6b1c9
 
 
 
