@@ -1,8 +1,8 @@
-const express=require('express');
-const router =express.Router()
-const auth=require('../models/user')
+const express = require('express');
+const router = express.Router()
+const auth = require('../models/user')
 const bcrypt = require("bcrypt");
-const User=require('../models/user')
+const User = require('../models/user')
 //REGISTER
 router.post("/register", async (req, res) => {
   try {
@@ -10,10 +10,10 @@ router.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
     console.log(req.body.username,
-    req.body.email,req.body.password,
-        hashedPassword,)
+      req.body.email, req.body.password,
+      hashedPassword)
 
-        console.log("newUser");
+    console.log("newUser");
     //create new user
     const newUser = new User({
       username: req.body.username,
@@ -34,6 +34,9 @@ router.post("/register", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
   try {
+    console.log("here");
+    console.log(req.body.email);
+    console.log(req.body.password);
     const user = await User.findOne({ email: req.body.email });
     !user && res.status(404).json("user not found");
 

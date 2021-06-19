@@ -1,5 +1,27 @@
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useRef } from "react";
 
 const Register = () => {
+
+    const username = useRef();
+    const email = useRef();
+    const password = useRef();
+
+    const handleClick = async (e) => {
+        e.preventDefault();
+        const user = {
+            username: username.current.value,
+            email: email.current.value,
+            password: password.current.value,
+        };
+        try {
+            await axios.post("/authRouter/register", user);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className="container-fluid">
             <div className="row register-body">
@@ -11,17 +33,18 @@ const Register = () => {
                 </div>
                 <div className="col-4">
                     <div className="row position-relative top-50 start-50 translate-middle">
-                        <form>
+                        <form onSubmit={handleClick}>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" />
+                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" ref={username} />
                                 <label for="floatingInput">Full Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" ref={email} />
                                 <label for="floatingInput">Email</label>
                             </div>
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" ref={password}
+                                />
                                 <label for="floatingPassword">Password</label>
                             </div>
                             <div>
@@ -32,7 +55,7 @@ const Register = () => {
                             </div>
                         </form>
                         <div className="d-grid col-7 mx-auto">
-                        <button type="button" class="btn btn-warning loginBtn">Back to login</button>
+                            <Link to="/login" type="button" class="btn btn-warning loginBtn">Back to login</Link>
                         </div>
                     </div>
                 </div>
