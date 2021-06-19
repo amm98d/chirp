@@ -6,7 +6,6 @@ const contract = Transaction.contract;
 
 
 
-
 const AddUser = async (cnic,name) => {
     const tx = contract.methods.addUser(cnic,name);
     return await executeTransaction(tx);
