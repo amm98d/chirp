@@ -10,8 +10,9 @@
 
 require('dotenv').config()
 const express=require('express');
-const app=express();
+const expapp=express();
 
+//connecting mongodb
 const mongoose=require('mongoose');
 mongoose.connect(process.env.DATABASE_URL,{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
 .then(()=>console.log("connected to db"))
@@ -21,6 +22,12 @@ expapp.use(express.json())
 
 const userRouter=require('./routes/userRouter')
 
+expapp.use('/userRouter',userRouter)
+
+
+expapp.listen(3000,()=>console.log('Server has started..'))
+
+/*
 expapp.get("/",(req,res) =>{
    npm
     res.sendFile(path.join(__dirname + '/WelcomePage/welcome.html'));
@@ -31,7 +38,19 @@ expapp.get("/",(req,res) =>{
 //Server Making Transactions
 expapp.post("/AddUser", async(req,res) =>{
      console.log(" Request Recieved for adding User: ");
-     console.log(req.body);
+     console.log(req.body);const userRouter=require('./routes/userRouter')
+const adminRouter=require('./routes/adminRouter')
+const categoryRouter=require('./routes/categoryRouter')
+const productRouter=require('./routes/productRouter')
+const orderRouter=require('./routes/orderRouter')
+//middleware
+app.use('/userRouter',userRouter)
+app.use('/adminRouter',adminRouter)
+app.use('/categoryRouter',categoryRouter)
+app.use('/productRouter',productRouter)
+app.use('/orderRouter',orderRouter)
+
+app.listen(3000,()=>console.log('Server has started..'))
      var trans = await PayableTrans.AddUser(req.body.cnic,req.body.name);
      console.log(trans);
      res.send(trans);
@@ -151,4 +170,4 @@ expapp.post("/AddUser", async(req,res) =>{
  
 expapp.listen(port, () =>{
     console.log(`Server is up on ${port}`);
-});
+});*/
