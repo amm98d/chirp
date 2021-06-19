@@ -1,6 +1,6 @@
-import Navbar from "../../components/navbar/navbar";
-import Feed from "../../components/feed/feed";
-import Contactsbar from "../../components/contactsbar/contactsbar";
+import Navbar from "../components/navbar";
+import Feed from "../components/feed";
+import Contactsbar from "../components/contactsbar";
 
 const Home = () => {
 	return (
