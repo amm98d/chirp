@@ -1,12 +1,25 @@
-const PayableTrans = require('../expressjsblock/PayableTrans');
-const GetterFunctions = require('../expressjsblock/GetterFuncs');
-const express = require('express');
-const expapp = express();
-expapp.use( express.json() );       
-expapp.use(express.urlencoded({ extended: true})); 
-const path = require('path');
-const port = process.env.PORT || 8000;
-const {MongoClient} = require('mongodb');
+//const PayableTrans = require('../expressjsblock/PayableTrans');
+//const GetterFunctions = require('../expressjsblock/GetterFuncs');
+//const express = require('express');
+//const expapp = express();
+//expapp.use( express.json() );       
+//expapp.use(express.urlencoded({ extended: true})); 
+//const path = require('path');
+//const port = process.env.PORT || 8000;
+//const {MongoClient} = require('mongodb');
+
+require('dotenv').config()
+const express=require('express');
+const app=express();
+
+const mongoose=require('mongoose');
+mongoose.connect(process.env.DATABASE_URL,{useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+.then(()=>console.log("connected to db"))
+.catch((err)=>console.log(err))
+
+expapp.use(express.json())
+
+const userRouter=require('./routes/userRouter')
 
 expapp.get("/",(req,res) =>{
    npm
