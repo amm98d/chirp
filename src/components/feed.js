@@ -1,4 +1,3 @@
-import './feed.css';
 
 const Feed = () => {
     return (

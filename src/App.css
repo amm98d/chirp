@@ -1,0 +1,94 @@
+.feed {
+    border-right: 1px dashed red;
+}
+
+.navbar-text {
+    font-size: 1.15em;
+}
+
+.navbar-img {
+    height: 35px;
+}
+
+.l-item {
+    display: inline-block;
+}
+
+.form-control {
+    color: red;
+}
+
+.register-body {
+    height: calc(100vh);
+}
+
+.loginBtn {
+    margin-top: 10px;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    border-color: rgba(221, 46, 68, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(221, 46, 68, 0.6);
+    outline: 0 none;
+}
+
+.home-body {
+    height: calc(100vh-50px);
+}
+
+.login-body {
+    height: calc(100vh);
+}
+
+.chirp-logo-img {
+    transform: scale(-1, 1);
+    height: 150px;
+}
+
+.chirp-logo-text {
+    font-family: 'Sacramento', cursive;
+    font-weight: bold;
+    font-size: 6em;
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+.regBtn {
+    margin-top: 10px;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+    border-color: rgba(221, 46, 68, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(221, 46, 68, 0.6);
+    outline: 0 none;
+}

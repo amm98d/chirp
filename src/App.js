@@ -6,23 +6,24 @@ import {
 	Switch,
 	Route,
 } from "react-router-dom";
+import './App.css'
 
 function App() {
 	return (
-		// <Router>
-		// 	<Switch>
-		// 		<Route path="/">
-		// 			<Home></Home>
-		// 		</Route>
-		// 		<Route path="/login">
-		// 			<Login></Login>
-		// 		</Route>
-		// 		<Route path="/register">
-		// 			<Register></Register>
-		// 		</Route>
-		// 	</Switch>
-		// </Router>
-		<Home></Home>
+		<Router>
+			<Switch>
+				<Route path="/" exact>
+					<Home></Home>
+				</Route>
+				<Route path="/login">
+					<Login></Login>
+				</Route>
+				<Route path="/register">
+					<Register></Register>
+				</Route>
+			</Switch>
+		</Router>
+		// <Home></Home>
 		// <Login></Login>
 	);
 }

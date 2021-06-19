@@ -1,4 +1,3 @@
-import './contactsbar.css';
 
 const Contactsbar = () => {
     return (

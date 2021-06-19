@@ -1,4 +1,3 @@
-import './register.css'
 
 const Register = () => {
     return (

@@ -1,7 +1,6 @@
 import Navbar from "../../components/navbar/navbar";
 import Feed from "../../components/feed/feed";
 import Contactsbar from "../../components/contactsbar/contactsbar";
-import './home.css'
 
 const Home = () => {
 	return (
