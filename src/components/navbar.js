@@ -49,8 +49,31 @@ const Navbar = () => {
 									<a href="/#" className="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 										<img className="navbar-img" src={process.env.PUBLIC_URL + '/images/smile.svg'} alt="" />
 									</a>
-									<ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-										<li><Link to="/profile" className="dropdown-item" >Action</Link></li>
+									<ul className="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+										<li>
+											<Link to="/profile" className="dropdown-item" >
+												<div className="row">
+													<div className="col-3">
+														<img className="navbar-dropdown-img" src={process.env.PUBLIC_URL + '/images/account.svg'} alt="" />
+													</div>
+													<div className="col-4">
+														Profile
+													</div>
+												</div>
+											</Link>
+										</li>
+										<li>
+											<Link to="/profile" className="dropdown-item" >
+												<div className="row">
+													<div className="col-3">
+														<img className="navbar-dropdown-img" src={process.env.PUBLIC_URL + '/images/logout.svg'} alt="" />
+													</div>
+													<div className="col-4">
+														Logout
+													</div>
+												</div>
+											</Link>
+										</li>
 									</ul>
 								</li>
 							</div>

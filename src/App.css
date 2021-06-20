@@ -6,6 +6,10 @@
     font-size: 1.15em;
 }
 
+.navbar-dropdown-img {
+    height: 25px;
+}
+
 .navbar-img {
     height: 35px;
 }
