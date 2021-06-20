@@ -24,6 +24,8 @@ expapp.use(express.json())
 
 const userRouter = require('../routes/userRouter')
 const authRouter = require('../routes/authRouter')
+const PostRouter = require('../routes/PostRouter')
 expapp.use('/userRouter', userRouter)
 expapp.use('/authRouter', authRouter)
+expapp.use('/PostRouter', PostRouter)
 expapp.listen(3000, () => console.log('Server has started..'))
