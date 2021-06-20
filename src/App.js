@@ -10,6 +10,7 @@ import {
 import './App.css'
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import Profile from "./pages/profile";
 
 function App() {
 	const { user } = useContext(AuthContext)
@@ -24,6 +25,9 @@ function App() {
 				</Route>
 				<Route path="/register">
 					{user ? <Redirect to='/' /> : <Register></Register>}
+				</Route>
+				<Route path="/profile">
+					{user ? <Profile></Profile> : <Redirect to='/' />}
 				</Route>
 			</Switch>
 		</Router>

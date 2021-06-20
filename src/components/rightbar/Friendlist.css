@@ -1,0 +1,63 @@
+.rightbar {
+    flex: 3.5;
+  }
+  
+  .rightbarWrapper {
+    padding: 20px 20px 0 0;
+  }
+  
+  
+  
+  .Title{
+      margin-bottom: 20px;
+  }
+  
+  .FriendList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .Title{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .barInfo{
+    margin-bottom: 30px;
+  }
+  
+  .barInfoItem{
+    margin-bottom: 10px;
+  }
+  
+  .barInfoKey{
+    font-weight: 500;
+    margin-right: 15px;
+    color: #555;
+  }
+  
+  .barInfoValue{
+    font-weight: 300;
+  }
+  
+  .Followings{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .Following{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .FollowingImg{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
