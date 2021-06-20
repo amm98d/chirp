@@ -5,7 +5,7 @@ const Navbar = () => {
 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<div className="container-fluid">
 				<div className="col-2">
-					<Link to="/" className="navbar-brand" href="#">
+					<Link to="/" className="navbar-brand">
 						<img className="navbar-img" src={process.env.PUBLIC_URL + '/images/bird.svg'} alt="" />
 						&nbsp;&nbsp;
 						<span className="navbar-text">
@@ -29,31 +29,28 @@ const Navbar = () => {
 						<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 							<div className="col-4 offset-5">
 								<li className="nav-item l-item">
-									<a className="nav-link active" aria-current="page" href="#">
+									<Link to="/" className="nav-link active" aria-current="page" >
 										<img className="navbar-img" src={process.env.PUBLIC_URL + '/images/home.svg'} alt="" />
-									</a>
+									</Link>
 								</li>
 								<li className="nav-item l-item">
-									<a className="nav-link" href="#">
+									<Link to="/messages" className="nav-link" >
 										<img className="navbar-img" src={process.env.PUBLIC_URL + '/images/message.svg'} alt="" />
-									</a>
+									</Link>
 								</li>
 								<li className="nav-item l-item">
-									<a className="nav-link" href="#">
+									<Link to="/notifs" className="nav-link" >
 										<img className="navbar-img" src={process.env.PUBLIC_URL + '/images/notification-read.svg'} alt="" />
-									</a>
+									</Link>
 								</li>
 							</div>
 							<div className="col offset-1">
 								<li className="nav-item dropdown l-item">
-									<a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<a href="/#" className="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 										<img className="navbar-img" src={process.env.PUBLIC_URL + '/images/smile.svg'} alt="" />
 									</a>
 									<ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-										<li><a className="dropdown-item" href="#">Action</a></li>
-										<li><a className="dropdown-item" href="#">Another action</a></li>
-										<li><hr className="dropdown-divider" /></li>
-										<li><a className="dropdown-item" href="#">Something else here</a></li>
+										<li><Link to="/profile" className="dropdown-item" >Action</Link></li>
 									</ul>
 								</li>
 							</div>
