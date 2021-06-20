@@ -11,6 +11,7 @@ router.post("/", async (req, res) => {
     const savedPost = await newPost.save();
     res.status(200).json(savedPost);
   } catch (err) {
+      console.log(err);
     res.status(500).json(err);
   }
 });
@@ -63,8 +64,10 @@ router.put("/:id/like", async (req, res) => {
 //get a post
 
 router.get("/:id", async (req, res) => {
+    console.log("Fetvching")
+    console.log(req.params.id)
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findOne({userId:req.params.id});
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json(err);
@@ -73,10 +76,14 @@ router.get("/:id", async (req, res) => {
 
 //get timeline posts
 
-router.get("/timeline/all", async (req, res) => {
+router.post("/timeline/all", async (req, res) => {
   try {
-    const currentUser = await User.findById(req.body.userId);
-    const userPosts = await Post.find({ userId: currentUser._id });
+      console.log(req.body.userId)
+
+    const currentUser = await User.findOne({email:req.body.email} );
+    console.log("Fetch2")
+    const userPosts = await Post.find({userId:req.body.userId});
+    console.log("Fetch3")
     const friendPosts = await Promise.all(
       currentUser.followings.map((friendId) => {
         return Post.find({ userId: friendId });
@@ -84,6 +91,7 @@ router.get("/timeline/all", async (req, res) => {
     );
     res.json(userPosts.concat(...friendPosts))
   } catch (err) {
+      console.log(err)
     res.status(500).json(err);
   }
 });
