@@ -1,7 +1,8 @@
 import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
-import { loginCall } from "../apiCalls";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
+import { CircularProgress } from "@material-ui/core";
 
 const Login = () => {
 
@@ -9,13 +10,16 @@ const Login = () => {
     const password = useRef();
     const { isFetching, dispatch } = useContext(AuthContext);
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault();
         console.log("clicked");
-        loginCall(
-            { email: email.current.value, password: password.current.value },
-            dispatch
-        );
+        dispatch({ type: "LOGIN_START" });
+        try {
+            const res = await axios.post("/authRouter/login", { email: email.current.value, password: password.current.value });
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+        } catch (err) {
+            dispatch({ type: "LOGIN_FAILURE", payload: err });
+        }
     };
 
     return (
@@ -41,12 +45,16 @@ const Login = () => {
                             <div>
                                 &nbsp;
                             </div>
-                            <div className="d-grid col-6 mx-auto">
-                                <button type="submit" className="btn btn-danger">Login</button>
+                            <div className="d-grid col-7 mx-auto">
+                                <button type="submit" className="btn btn-danger" disabled={isFetching}>
+                                    {isFetching ? <CircularProgress color="white" size="15px" /> : "Login"}
+                                </button>
                             </div>
                         </form>
-                        <div className="d-grid col-7 mx-auto">
-                            <Link to="/register" className="btn btn-warning regBtn">Register</Link>
+                        <div className="d-grid col-8 mx-auto">
+                            <Link to="/register" className="btn btn-warning regBtn" disabled={isFetching}>
+                                {isFetching ? <CircularProgress color="white" size="15px" /> : "Create a New Account"}
+                            </Link>
                         </div>
                     </div>
                 </div>

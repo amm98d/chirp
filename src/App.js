@@ -5,26 +5,28 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
+	Redirect,
 } from "react-router-dom";
 import './App.css'
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
+	const { user } = useContext(AuthContext)
 	return (
 		<Router>
 			<Switch>
 				<Route path="/" exact>
-					<Home></Home>
+					{user ? <Home></Home> : <Login></Login>}
 				</Route>
 				<Route path="/login">
-					<Login></Login>
+					{user ? <Redirect to='/' /> : <Login></Login>}
 				</Route>
 				<Route path="/register">
-					<Register></Register>
+					{user ? <Redirect to='/' /> : <Register></Register>}
 				</Route>
 			</Switch>
 		</Router>
-		// <Home></Home>
-		// <Login></Login>
 	);
 }
 

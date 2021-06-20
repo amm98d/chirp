@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { CircularProgress } from "@material-ui/core";
 
 const Register = () => {
 
     const username = useRef();
     const email = useRef();
     const password = useRef();
+    const history = useHistory();
+    const { isFetching, dispatch } = useContext(AuthContext);
 
     const handleClick = async (e) => {
         e.preventDefault();
@@ -17,8 +21,13 @@ const Register = () => {
         };
         try {
             await axios.post("/authRouter/register", user);
+            console.log();
+            dispatch({ type: "LOGIN_START" });
+            const res = await axios.post("/authRouter/login", { email: email.current.value, password: password.current.value });
+            dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+            history.push('/')
         } catch (err) {
-            console.log(err);
+            console.log(err.response.data);
         }
     };
 
@@ -34,28 +43,33 @@ const Register = () => {
                 <div className="col-4">
                     <div className="row position-relative top-50 start-50 translate-middle">
                         <form onSubmit={handleClick}>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" ref={username} />
-                                <label for="floatingInput">Full Name</label>
+                            <div className="form-floating mb-3">
+                                <input type="text" className="form-control" id="floatingInputName" placeholder="name@example.com" ref={username} />
+                                <label htmlFor="floatingInputName">Full Name</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" ref={email} />
-                                <label for="floatingInput">Email</label>
+                            <div className="form-floating mb-3">
+                                <input type="email" className="form-control" id="floatingInputEmail" placeholder="name@example.com" ref={email} />
+                                <label htmlFor="floatingInputEmail">Email</label>
                             </div>
-                            <div class="form-floating">
-                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" ref={password}
+                            <div className="form-floating">
+                                <input type="password" className="form-control" id="floatingPassword" placeholder="Password" ref={password}
                                 />
-                                <label for="floatingPassword">Password</label>
+                                <label htmlFor="floatingPassword">Password</label>
                             </div>
                             <div>
                                 &nbsp;
                             </div>
                             <div className="d-grid col-6 mx-auto">
-                                <button type="submit" className="btn btn btn-danger">Register</button>
+                                <button type="submit" className="btn btn btn-danger">
+                                    {/* <CircularProgress color="white" size="15px" /> */}
+                                    {isFetching ? <CircularProgress color="white" size="15px" /> : "Register"}
+                                </button>
                             </div>
                         </form>
                         <div className="d-grid col-7 mx-auto">
-                            <Link to="/login" type="button" class="btn btn-warning loginBtn">Back to login</Link>
+                            <Link to="/login" type="button" className="btn btn-warning loginBtn">
+                                {isFetching ? <CircularProgress color="white" size="15px" /> : "Back to login"}
+                            </Link>
                         </div>
                     </div>
                 </div>
