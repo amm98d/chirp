@@ -1,96 +1,98 @@
+const User = require("../models/User");
+const router = require("express").Router();
+const bcrypt = require("bcrypt");
 
-
-
-
-const express=require('express');
-const router =express.Router()
-const user=require('../models/user')
-
-
-
-//Getting all.............................
-router.get('/',async(req,res)=>{
-   try{
-    const users=await user.find()
-    res.json(users)
-   }catch(error){
-     res.status(500).json({message:error.message})
-   }
-})
-
-
-
-//getting one.................................
-router.get('/user/:id',getuser,(req,res)=>{
-    res.send(res.user)
-})
-
-
-//creating one...............................
-router.post('/create',async(req,res)=>{
-    const u=new user({
-        name:req.body.name,
-        email:req.body.email,
-        password:req.body.password
-    })
-    try{
-        const newuser=await u.save()
-        res.status(201).json(newuser)
-    }catch(error){
-        res.status(400).json({message:error.message})
-
-    }
-    
-})
-
-
-//updating one......................................
-router.patch('/update/:id', getuser, async (req, res) => {
-    if (req.body.name != null) {
-      res.user.name = req.body.name
-    }
-    if (req.body.email != null) {
-      res.user.email = req.body.email
-    }
-    if (req.body.password != null) {
-        res.user.password = req.body.password
-      }
-    try {
-      const updateduser = await res.user.save()
-      res.json(updateduser)
-    } catch (err) {
-      res.status(400).json({ message: err.message })
-    }
-  })
-
-
-//delete one.....................................
-router.delete('/delete/:id',getuser,async (req,res)=>{
-    try {
-        await res.user.remove()
-        res.json({ message: 'Deleted user' })
+//update user
+router.put("/:id", async (req, res) => {
+  if (req.body.userId === req.params.id || req.body.isAdmin) {
+    if (req.body.password) {
+      try {
+        const salt = await bcrypt.genSalt(10);
+        req.body.password = await bcrypt.hash(req.body.password, salt);
       } catch (err) {
-        res.status(500).json({ message: err.message })
+        return res.status(500).json(err);
       }
-})
-
-
-//middleware function...................................
-async function getuser(req,res,next){
-    let tuser
-    try{
-        tuser=await user.findById(req.params.id)
-        if(tuser==null){
-            return res.status(404).json({message:"canoout find user"})
-        }
-
-    }catch(err){
-        return res.status(500).json({message:err.message})
     }
-    res.user=tuser
-    next()
-}
+    try {
+      const user = await User.findByIdAndUpdate(req.params.id, {
+        $set: req.body,
+      });
+      res.status(200).json("Account has been updated");
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+    return res.status(403).json("You can update only your account!");
+  }
+});
 
+//delete user
+router.delete("/:id", async (req, res) => {
+  if (req.body.userId === req.params.id || req.body.isAdmin) {
+    try {
+      await User.findByIdAndDelete(req.params.id);
+      res.status(200).json("Account has been deleted");
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+    return res.status(403).json("You can delete only your account!");
+  }
+});
 
+//get a user
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const { password, updatedAt, ...other } = user._doc;
+    res.status(200).json(other);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-module.exports=router
+//follow a user
+
+router.put("/:id/follow", async (req, res) => {
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      const currentUser = await User.findById(req.body.userId);
+      if (!user.followers.includes(req.body.userId)) {
+        await user.updateOne({ $push: { followers: req.body.userId } });
+        await currentUser.updateOne({ $push: { followings: req.params.id } });
+        res.status(200).json("user has been followed");
+      } else {
+        res.status(403).json("you allready follow this user");
+      }
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    res.status(403).json("you cant follow yourself");
+  }
+});
+
+//unfollow a user
+
+router.put("/:id/unfollow", async (req, res) => {
+    if (req.body.userId !== req.params.id) {
+      try {
+        const user = await User.findById(req.params.id);
+        const currentUser = await User.findById(req.body.userId);
+        if (user.followers.includes(req.body.userId)) {
+          await user.updateOne({ $pull: { followers: req.body.userId } });
+          await currentUser.updateOne({ $pull: { followings: req.params.id } });
+          res.status(200).json("user has been unfollowed");
+        } else {
+          res.status(403).json("you dont follow this user");
+        }
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    } else {
+      res.status(403).json("you cant unfollow yourself");
+    }
+  });
+
+module.exports = router;

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router()
-const auth = require('../models/user')
 const bcrypt = require("bcrypt");
-const User = require('../models/user')
+const User = require('../models/User')
+
 //REGISTER
 router.post("/register", async (req, res) => {
   try {
@@ -31,7 +31,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//LOGIN
 router.post("/login", async (req, res) => {
   try {
     console.log("here");
@@ -43,6 +42,7 @@ router.post("/login", async (req, res) => {
     const validPassword = await bcrypt.compare(req.body.password, user.password)
     !validPassword && res.status(400).json("wrong password")
 
+    user.isLoggedin = true;
     res.status(200).json(user)
   } catch (err) {
     console.log(err);
