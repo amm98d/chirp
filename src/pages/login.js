@@ -1,5 +1,5 @@
-import { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useContext, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { CircularProgress } from "@material-ui/core";
@@ -12,7 +12,6 @@ const Login = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        console.log("clicked");
         dispatch({ type: "LOGIN_START" });
         try {
             const res = await axios.post("/authRouter/login", { email: email.current.value, password: password.current.value });
