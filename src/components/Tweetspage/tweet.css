@@ -1,20 +1,20 @@
-.tweet {
-    width: 100%;
-    height: 170px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  }
-  
-  .tweetWrapper{
-    padding: 10px;
-  }
-  
-  .tweetTop{
+
+  .card{
     display: flex;
-    align-items: center;
+    margin-bottom: 30px;
+/*   
+    padding: 20px 20px 0 0;
+    display: flex;
+    
+    border-radius: 30px;
+    background-color:ghostwhite;
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 20px;
+   
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 30px; */
   }
-  
   .tweetProfileImg {
     width: 50px;
     height: 50px;
@@ -42,17 +42,7 @@
     justify-content: space-between;
   }
   
-  .tweetOptions{
-      display: flex;
-      margin-left: 20px;
-  }
   
-  .tweetOption{
-      display: flex;
-      align-items: center;
-      margin-right: 15px;
-      cursor: pointer;
-  }
   
   .tweetIcon{
       font-size: 18px;
@@ -62,6 +52,7 @@
   .tweetOptionText{
       font-size: 14px;
       font-weight: 500;
+      margin-right: 20px;
   }
   
   .tweetButton{
@@ -73,6 +64,7 @@
       margin-right: 20px;
       cursor: pointer;
       color: white;
+      float: right;
   }
 
   

@@ -18,6 +18,7 @@ function App() {
 		<Router>
 			<Switch>
 				<Route path="/" exact>
+					{/* {user ? <Profile></Profile> : <Redirect to='/' />} */}
 					{user ? <Home></Home> : <Login></Login>}
 				</Route>
 				<Route path="/login">

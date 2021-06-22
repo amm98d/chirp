@@ -1,11 +1,38 @@
 import "./tweet.css"
 
 import {PermMedia, EmojiEmotions} from "@material-ui/icons"
+
 export default function Share() {
     return (
         <>
-<div className="tweet">
-      <div className="tweetWrapper">
+      
+                <div>
+                <div className="card" >
+                
+                <div className="card-header">
+                <img className="tweetProfileImg" src="/assets/helmet.jpg" alt="" />
+                
+                </div>
+                    
+                <div className="card-body" >
+                <input placeholder="Tweety Tweets Tweet"className="tweetInput"/>
+                <hr className="tweetHr"/>
+
+                       <PermMedia htmlColor="tomato" className="tweetIcon"/>
+                        <span className="tweetOptionText">Photo or Video</span>
+                        <EmojiEmotions htmlColor="goldenrod" className="tweetIcon"/>
+                        <span className="tweetOptionText">Emoji</span>
+                        <button  className="tweetButton" type="button" >Tweet</button>
+                </div>
+            </div>
+
+         </div>
+                
+
+           
+ {/* <div className="tweet">
+            
+       <div className="tweetWrapper">
         <div className="tweetTop">
           <img className="tweetProfileImg" src="/assets/helmet.jpg" alt="" />
           <input
@@ -28,8 +55,8 @@ export default function Share() {
             </div>
             <button className="tweetButton">Tweet</button>
         </div>
-      </div>
-</div>
+      </div> 
+</div> */}
 
 
     
