@@ -1,70 +1,50 @@
-
-  .card{
+.card {
     display: flex;
     margin-bottom: 30px;
-/*   
-    padding: 20px 20px 0 0;
-    display: flex;
-    
-    border-radius: 30px;
-    background-color:ghostwhite;
-    background-position: left top;
-    background-repeat: repeat;
-    padding: 20px;
-   
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 30px; */
-  }
-  .tweetProfileImg {
+}
+
+.chirp-around {
+    display: inline;
+    position: relative;
+    top: 5px;
+}
+
+.tweetProfileImg {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
-  }
-  
-  .tweetInput {
+}
+
+.tweetInput {
     border: none;
     width: 80%;
-  }
-  
-  .tweetInput:focus {
+}
+
+.tweetInput:focus {
     outline: none;
-  }
-  
-  .tweetHr {
-    margin: 20px;
-  }
-  
-  .tweetBottom {
+}
+
+.tweetBottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  
-  
-  
-  .tweetIcon{
-      font-size: 18px;
-      margin-right: 3px;
-  }
-  
-  .tweetOptionText{
-      font-size: 14px;
-      font-weight: 500;
-      margin-right: 20px;
-  }
-  
-  .tweetButton{
-      border: none;
-      padding: 7px;
-      border-radius: 5px;
-      background-color: green;
-      font-weight: 500;
-      margin-right: 20px;
-      cursor: pointer;
-      color: white;
-      float: right;
-  }
+}
 
-  
+.tweetIcon {
+    font-size: 18px;
+    margin-right: 3px;
+}
+
+.tweetOptionText {
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.tweetButton {
+    font-weight: 500;
+    cursor: pointer;
+    float: right;
+}
