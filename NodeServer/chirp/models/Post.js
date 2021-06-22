@@ -2,9 +2,19 @@ const mongoose = require("mongoose");
 
 const PostSch = new mongoose.Schema(
   {
-    userId: {
+    email: {
       type: String,
       required: true,
+    },
+    postId :{
+        type: String,
+        required: true,
+        unique: true
+    },
+
+    postNum:{
+        type: String,
+        required: true
     },
     desc: {
       type: String,
