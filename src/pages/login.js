@@ -12,7 +12,6 @@ const Login = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        console.log("clicked");
         dispatch({ type: "LOGIN_START" });
         try {
             const res = await axios.post("/authRouter/login", { email: email.current.value, password: password.current.value });

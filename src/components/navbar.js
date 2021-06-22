@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
 
 const Navbar = () => {
+
+	const { dispatch } = useContext(AuthContext);
+
+	const handleLogout = () => {
+		localStorage.removeItem("chirp-user")
+		dispatch({ type: "LOG_OUT" });
+	}
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<div className="container-fluid">
@@ -63,7 +72,7 @@ const Navbar = () => {
 											</Link>
 										</li>
 										<li>
-											<Link to="/profile" className="dropdown-item" >
+											<a href="/#" className="dropdown-item" onClick={handleLogout}>
 												<div className="row">
 													<div className="col-3">
 														<img className="navbar-dropdown-img" src={process.env.PUBLIC_URL + '/images/logout.svg'} alt="" />
@@ -72,7 +81,7 @@ const Navbar = () => {
 														Logout
 													</div>
 												</div>
-											</Link>
+											</a>
 										</li>
 									</ul>
 								</li>
