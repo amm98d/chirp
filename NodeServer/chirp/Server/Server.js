@@ -15,8 +15,9 @@ const port = process.env.PORT || 8000;
 dotenv.config();
 
 //connecting mongodb
-//console.writeline(process.env.DATABASE_URL);
-mongoose.connect(process.env.DATABASE_URL, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
+
+mongoose.connect(process.env.DATABASE_URL, 
+    { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
     .then(() => console.log("connected to db"))
     .catch((err) => console.log(err))
 
@@ -28,4 +29,7 @@ const PostRouter = require('../routes/PostRouter')
 expapp.use('/userRouter', userRouter)
 expapp.use('/authRouter', authRouter)
 expapp.use('/PostRouter', PostRouter)
-expapp.listen(3000, () => console.log('Server has started..'))
+
+expapp.listen(3000, () => 
+console.log('Server has started..')
+);
