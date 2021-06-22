@@ -36,29 +36,6 @@ export default function Friendlist() {
           </div>
         </div>
       </div>
-      {/* <div className="rightbar">
-        <div className="barWrapper">
-          <h4 className="Title">User friends</h4>
-          <div className="Followings">
-            <div className="Following">
-              <img src="assets/helmet.jpg" alt="" className="FollowingImg" />
-              <span className="FollowingName">Ahmed</span>
-            </div>
-          </div>
-          <div className="Followings">
-            <div className="Following">
-              <img src="assets/helmet.jpg" alt="" className="FollowingImg" />
-              <span className="FollowingName">Ahmed</span>
-            </div>
-          </div>
-          <div className="Followings">
-            <div className="Following">
-              <img src="assets/helmet.jpg" alt="" className="FollowingImg" />
-              <span className="FollowingName">Ahmed</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 

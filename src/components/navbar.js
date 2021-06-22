@@ -11,7 +11,7 @@ const Navbar = () => {
 		dispatch({ type: "LOG_OUT" });
 	}
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light chirp-nav">
 			<div className="container-fluid">
 				<div className="col-2">
 					<Link to="/" className="navbar-brand">

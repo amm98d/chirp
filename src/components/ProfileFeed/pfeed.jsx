@@ -7,7 +7,7 @@ export default function Feed() {
     <div className="feed">
       <div className="feedWrapper">
         <Tweet />
-        <h3> All tweets</h3>
+        <h3>My Feed</h3>
         <Post />
       </div>
     </div>
