@@ -21,7 +21,22 @@ router.post("/create", async (req, res) => {
     res.status(500).json(err);
   }
 });
-//update a post
+
+router.put("/:email/:postNum/like", async (req, res) => {
+console.log("Liking Tweet")
+  try {
+    const post = await Post.findOne({postId:(req.params.email+req.params.postNum)});
+    if (!post.likes.includes(req.body.email)) {
+      await post.updateOne({ $push: { likes: req.body.email } });
+      res.status(200).json("The post has been liked");
+    } else {
+      await post.updateOne({ $pull: { likes: req.body.email } });
+      res.status(200).json("The post has been disliked");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.put("/updateTweet", async (req, res) => {
   try {
@@ -55,20 +70,7 @@ router.delete("/delete", async (req, res) => {
 });
 
 
-router.put("/:email/:postNum/like", async (req, res) => {
-  try {
-    const post = await Post.findOne({postId:(req.params.email+req.params.postNum)});
-    if (!post.likes.includes(req.body.email)) {
-      await post.updateOne({ $push: { likes: req.body.email } });
-      res.status(200).json("The post has been liked");
-    } else {
-      await post.updateOne({ $pull: { likes: req.body.email } });
-      res.status(200).json("The post has been disliked");
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+
 //get a post
 
 router.get("/:email/:postNum", async (req, res) => {

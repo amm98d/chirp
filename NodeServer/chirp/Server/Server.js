@@ -3,14 +3,13 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const helmet = require('helmet');
-const morgan = require('morgan');
+
 
 const expapp = express();
 expapp.use(express.json());
 expapp.use(express.urlencoded({ extended: true }));
-const path = require('path');
-const port = process.env.PORT || 8000;
+
+const port = process.env.PORT || 3000;
 
 dotenv.config();
 
@@ -30,6 +29,6 @@ expapp.use('/userRouter', userRouter)
 expapp.use('/authRouter', authRouter)
 expapp.use('/PostRouter', PostRouter)
 
-expapp.listen(3000, () => 
-console.log('Server has started..')
+expapp.listen(port, () => 
+console.log('Server has started.. with port: '+port )
 );
