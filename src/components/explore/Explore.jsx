@@ -1,16 +1,18 @@
 import "./Explore.css"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Explore() {
 
   const [peopleYouMayKnow, setPeopleYouMayKnow] = useState(null)
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get("/userRouter/allUsers");
-        console.log(res);
+        const res = await axios.get("/userRouter/peopleMayknow/" + user.email);
         var result = [];
         for (var i in res.data) {
           result.push({ "name": res.data[i].Fullname, "email": res.data[i].email });
@@ -23,7 +25,6 @@ export default function Explore() {
     fetchData();
   }, [])
 
-
   return (
     <>
       <div className="container Explorelistbox">
@@ -32,7 +33,7 @@ export default function Explore() {
             <div className="col-2">
               <img className="navbar-dropdown-img" src={process.env.PUBLIC_URL + '/images/smile.svg'} alt="" />
             </div>
-            <div className="col-6">
+            <div className="col-6 text-truncate">
               {person.name}
             </div>
             <div className="col-4">

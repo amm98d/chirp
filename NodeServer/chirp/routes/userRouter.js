@@ -50,45 +50,45 @@ router.delete("/delete/:email", async (req, res) => {
 router.get("/allUsers", async (req, res) => {
   console.log("all users");
 
-  try{
-  User.find({}, function(err, users) {
-    var userMap = {};
-
-    users.forEach(function (user) {
-      userMap[user.email] = user;
-    });
-
-    res.send(userMap);
-  });
-}
-catch(err){
-  res.status(500).json(err)
-}
-});
-router.get("/peopleMayknow/:email", async (req,res)=>{
- 
-  try{
-    const cUser = await User.findOne({email:req.params.email});
-    console.log(cUser);
-    User.find({}, function(err, users) {
+  try {
+    User.find({}, function (err, users) {
       var userMap = {};
 
-      users.forEach(function(user) {
-        
-        if (user.email != req.params.email && !cUser.followings.includes(user.email)){
-          userMap[user.email] = user;
-        }
-        
+      users.forEach(function (user) {
+        userMap[user.email] = user;
       });
 
-        
-      res.status(200).json(userMap)
-  });
+      res.send(userMap);
+    });
+  }
+  catch (err) {
+    res.status(500).json(err)
+  }
+});
 
-}
-catch(err){
-  res.status(500).json(err)
-}
+router.get("/peopleMayknow/:email", async (req, res) => {
+  try {
+    const cUser = await User.findOne({ email: req.params.email });
+    console.log(cUser);
+    User.find({}, function (err, users) {
+      var userMap = {};
+
+      users.forEach(function (user) {
+
+        if (user.email != req.params.email && !cUser.followings.includes(user.email)) {
+          userMap[user.email] = user;
+        }
+
+      });
+
+
+      res.status(200).json(userMap)
+    });
+
+  }
+  catch (err) {
+    res.status(500).json(err)
+  }
 
 });
 
