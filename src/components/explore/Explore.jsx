@@ -10,6 +10,7 @@ export default function Explore() {
     async function fetchData() {
       try {
         const res = await axios.get("/userRouter/allUsers");
+        console.log(res);
         var result = [];
         for (var i in res.data) {
           result.push({ "name": res.data[i].Fullname, "email": res.data[i].email });
