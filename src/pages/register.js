@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 
 const Register = () => {
 
-    const username = useRef();
+    const Fullname = useRef();
     const email = useRef();
     const password = useRef();
     const history = useHistory();
@@ -15,7 +15,7 @@ const Register = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         const user = {
-            username: username.current.value,
+            Fullname: Fullname.current.value,
             email: email.current.value,
             password: password.current.value,
         };
@@ -44,7 +44,7 @@ const Register = () => {
                     <div className="row position-relative top-50 start-50 translate-middle">
                         <form onSubmit={handleClick}>
                             <div className="form-floating mb-3">
-                                <input type="text" className="form-control" id="floatingInputName" placeholder="name@example.com" ref={username} />
+                                <input type="text" className="form-control" id="floatingInputName" placeholder="name@example.com" ref={Fullname} />
                                 <label htmlFor="floatingInputName">Full Name</label>
                             </div>
                             <div className="form-floating mb-3">
