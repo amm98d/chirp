@@ -38,6 +38,10 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    NumberofPosts:{
+      type: Number,
+      default:0
+    },
     isLoggedin: {
       type: Boolean,
       default: false,

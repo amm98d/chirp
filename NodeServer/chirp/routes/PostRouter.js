@@ -6,15 +6,21 @@ const User = require("../models/User");
 
 router.post("/create", async (req, res) => {
 
-  const newPost = new Post({
-    email: req.body.email,
-    desc: req.body.desc,
-    postNum: req.body.postNum,
-    postId: req.body.email + req.body.postNum
-  });
   try {
+    var cUser = await User.findOne({ email: req.body.email });
+
+    const newPost = new Post({
+      email: req.body.email,
+      desc: req.body.desc,
+      postNum: cUser.NumberofPosts,
+      postId: req.body.email + cUser.NumberofPosts
+    });
+
     console.log("new Post");
+    console.log(req.body.email + (cUser.NumberofPosts))
+    await cUser.updateOne({ $inc: { NumberofPosts: 1 } });
     const savedPost = await newPost.save();
+
     res.status(200).json(savedPost);
   } catch (err) {
     console.log(err);
