@@ -48,6 +48,8 @@ router.delete("/delete/:email", async (req, res) => {
 });
 router.get("/allUsers", async (req,res)=>{
   console.log("all users");
+
+  try{
   User.find({}, function(err, users) {
     var userMap = {};
 
@@ -57,6 +59,37 @@ router.get("/allUsers", async (req,res)=>{
 
     res.send(userMap);  
   });
+}
+catch(err){
+  res.status(500).json(err)
+}
+});
+router.get("/peopleMayknow/:email", async (req,res)=>{
+  console.log("people May Know");
+  console.log(req.params.email);
+  try{
+    const cUser = await User.findOne({email:req.params.email});
+    console.log(cUser);
+    User.find({}, function(err, users) {
+      var userMap = {};
+
+      users.forEach(function(user) {
+        
+        if (user.email != req.params.email && !cUser.followings.includes(user.email)){
+          userMap[user.email] = user;
+        }
+        
+      });
+
+        
+      res.status(200).json(userMap)
+  });
+
+}
+catch(err){
+  res.status(500).json(err)
+}
+
 });
 
 //get a user
