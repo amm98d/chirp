@@ -15,7 +15,6 @@ export default function Share() {
         const res = await axios.post("/postRouter/timeline/all", {
           email: user.email
         });
-        console.log(res);
         var result = [];
         for (var i in res.data) {
           result.push({

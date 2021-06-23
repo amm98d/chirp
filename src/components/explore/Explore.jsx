@@ -23,7 +23,18 @@ export default function Explore() {
       }
     }
     fetchData();
-  }, [])
+  }, )
+
+  const followHandler = async (email) => {
+    console.log(email);
+    try {
+      const res = await axios.put("/userRouter/follow/" + email, {
+        email: user.email,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -37,7 +48,7 @@ export default function Explore() {
               {person.name}
             </div>
             <div className="col-4">
-              <button className="Explore btn btn-sm btn-outline-danger" >Follow</button>
+              <button className="Explore btn btn-sm btn-outline-danger" onClick={() => followHandler(person.email)} >Follow</button>
             </div>
           </div>
         ))}
