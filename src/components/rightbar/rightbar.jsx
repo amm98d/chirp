@@ -20,7 +20,7 @@ export default function Rightbar() {
         }
         setfriends(followersResult);
         var peopleYouMayKnowResult = [];
-        for (var i in peopleYouMayKnowRes.data) {
+        for (i in peopleYouMayKnowRes.data) {
           peopleYouMayKnowResult.push({ "name": peopleYouMayKnowRes.data[i].Fullname, "email": peopleYouMayKnowRes.data[i].email });
         }
         setPeopleYouMayKnow(peopleYouMayKnowResult);
@@ -29,11 +29,11 @@ export default function Rightbar() {
       }
     }
     fetchData();
-  },)
+  },[])
 
   const followHandler = async (email, name) => {
     try {
-      const res = await axios.put("/userRouter/follow/" + email, {
+      await axios.put("/userRouter/follow/" + email, {
         email: user.email,
       });
       // setPeopleYouMayKnow(peopleYouMayKnow.filter(person => person.email != email));
@@ -47,7 +47,7 @@ export default function Rightbar() {
 
   const unFollowHandler = async (email, name) => {
     try {
-      const res = await axios.put("/userRouter/unfollow/" + email, {
+      await axios.put("/userRouter/unfollow/" + email, {
         email: user.email,
       });
       // setfriends(friends.filter(friend => friend.email != email));

@@ -6,15 +6,15 @@ import axios from "axios";
 export default function Share() {
 
     const newChirp = useRef();
-    const { user, isFetching, dispatch } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const handleClick = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post(
-                "/postRouter/",
+                "/PostRouter/create",
                 {
-                    userId: user.email,
+                    email: user.email,
                     desc: newChirp.current.value
                 }
             );
