@@ -23,7 +23,7 @@ export default function Explore() {
       }
     }
     fetchData();
-  }, )
+  },{} )
 
   const followHandler = async (email) => {
     console.log(email);

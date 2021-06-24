@@ -9,7 +9,7 @@ const expapp = express();
 expapp.use(express.json());
 expapp.use(express.urlencoded({ extended: true }));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 dotenv.config();
 
