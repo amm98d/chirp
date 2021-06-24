@@ -1,5 +1,5 @@
 import Navbar from "../components/navbar";
-import Friendlist from "../components/rightbar/Friendlist";
+import Rightbar from "../components/rightbar/rightbar";
 import Feed from "../components/ProfileFeed/pfeed";
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
 						<Feed></Feed>
 					</div>
 					<div className="col-3">
-						<Friendlist></Friendlist>
+						<Rightbar></Rightbar>
 					</div>
 				</div>
 			</div>

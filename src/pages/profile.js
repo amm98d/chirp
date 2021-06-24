@@ -1,5 +1,5 @@
 import React from 'react';
-import Friendlist from "../components/rightbar/Friendlist";
+import Rightbar from "../components/rightbar/rightbar";
 import Navbar from '../components/navbar';
 import Post from "../components/Post/post"
 
@@ -31,7 +31,7 @@ export default function Profile() {
                         <Post />
                     </div>
                     <div className="col-3">
-                        <Friendlist />
+                        <Rightbar />
                     </div>
                 </div>
 
