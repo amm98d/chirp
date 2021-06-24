@@ -22,7 +22,7 @@ export default function Share() {
             "desc": res.data[i].desc,
             "email": res.data[i].email,
             "likes": res.data[i].likes.length,
-            "postId": res.data[i].likes.postId,
+            "postNum": res.data[i].postNum,
           });
         }
         setChirps(result);
@@ -32,6 +32,20 @@ export default function Share() {
     }
     fetchData();
   }, [])
+
+  const handleLike = async (email, postNum) => {
+    try {
+      const res = await axios.put("/PostRouter/" + email + "/" + postNum + "/like/", {
+        email: user.email,
+      });
+      // setfriends(friends.filter(friend => friend.email != email));
+      // var temp = peopleYouMayKnow;
+      // temp.push({ "name": name, "email": email });
+      // setPeopleYouMayKnow(temp);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -46,7 +60,7 @@ export default function Share() {
             <span className="postText">{chirp.desc}</span>
             <hr className="" />
             <div className="inf">
-              <div className="inf2">
+              <div className="inf2" onClick={() => handleLike(chirp.email, chirp.postNum)}>
                 <img className="likeIcon" src="assets/like.png" alt="" />
                 <span className="postLikeCounter">{chirp.likes}</span>
               </div>
